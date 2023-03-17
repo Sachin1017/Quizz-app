@@ -1,4 +1,6 @@
-import React, { createContext, useState } from 'react';
+import React, {
+  createContext, useMemo, useState,
+} from 'react';
 
 export const QuizContext = createContext();
 
@@ -36,7 +38,7 @@ const quizzes = [
     opt1: 'Surendra Nath Banerjee',
     opt2: 'Subhash Chandra Bose',
     opt3: 'Dr. Sachchida Nand Sinha',
-    ans: 'Surendra Nath Banerjee',
+    ans: 'opt1',
   },
 ];
 
@@ -44,13 +46,39 @@ export function QuizHolder(props) {
   const [start, setStart] = useState(false);
   const [exit, setExit] = useState(false);
   const [correct, setCorrect] = useState(0);
-  return (
-    <QuizContext.Provider value={
+  const [score, setScore] = useState(0);
+  // const loadQuiz = useCallback(
+  //   async () => {
+  //     try {
+  //       const res = await axiosInstance.get('quiz');
+  //     } catch (error) {
+
+  //     }
+  //   },
+  //   [second],
+  // );
+
+  const value = useMemo(() =>
+    (
       {
-        start, exit, setStart, setExit, quizzes, correct, setCorrect,
+        start,
+        exit,
+        setStart,
+        setExit,
+        quizzes,
+        correct,
+        setCorrect,
+        score,
+        setScore,
       }
-    }
-    >
+    ), [start,
+    exit,
+    quizzes,
+    correct,
+    score,
+  ]);
+  return (
+    <QuizContext.Provider value={value}>
       {props.children}
     </QuizContext.Provider>
   );

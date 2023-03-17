@@ -8,6 +8,16 @@
     }
     
      &--active {
-        @apply bg-blue-500 text-white;
+        @apply bg-green-400 text-white;
      }
+}
+
+.bt {
+    &--default{
+        @apply px-4 py-2 bg-slate-400 cursor-not-allowed text-white rounded-md;
+    }
+
+    &--active{
+        @apply bg-green-400 hover:bg-green-500 cursor-pointer text-white
+    }
 }
