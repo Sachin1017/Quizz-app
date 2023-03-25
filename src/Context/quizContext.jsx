@@ -1,6 +1,7 @@
 import React, {
-  createContext, useMemo, useState,
+  createContext, useCallback, useMemo, useState,
 } from 'react';
+import axiosInstance from '../utils/axiosInstance';
 
 export const QuizContext = createContext();
 
@@ -43,39 +44,43 @@ const quizzes = [
 ];
 
 export function QuizHolder(props) {
-  const [start, setStart] = useState(false);
-  const [exit, setExit] = useState(false);
   const [correct, setCorrect] = useState(0);
   const [score, setScore] = useState(0);
-  // const loadQuiz = useCallback(
-  //   async () => {
-  //     try {
-  //       const res = await axiosInstance.get('quiz');
-  //     } catch (error) {
+  const [quiz, setQuiz] = useState([]);
+  const [theme, setTheme] = useState(false);
 
-  //     }
-  //   },
-  //   [second],
-  // );
+  const loadQuiz = useCallback(
+    async () => {
+      try {
+        const res = await axiosInstance.get('quiz');
+        setQuiz(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    [],
+  );
 
   const value = useMemo(() =>
     (
       {
-        start,
-        exit,
-        setStart,
-        setExit,
         quizzes,
         correct,
         setCorrect,
         score,
         setScore,
+        quiz,
+        loadQuiz,
+        theme,
+        setTheme,
+
       }
-    ), [start,
-    exit,
+    ), [
     quizzes,
     correct,
     score,
+    quiz,
+    theme,
   ]);
   return (
     <QuizContext.Provider value={value}>

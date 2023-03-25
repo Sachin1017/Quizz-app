@@ -14,10 +14,32 @@
 
 .bt {
     &--default{
-        @apply px-4 py-2 bg-slate-400 cursor-not-allowed text-white rounded-md;
+        @apply px-10 py-2 bg-slate-400 cursor-not-allowed text-white font-semibold rounded-md;
     }
 
     &--active{
         @apply bg-green-400 hover:bg-green-500 cursor-pointer text-white
+    }
+}
+.theme{
+    &--light{
+        @apply bg-orange-50 text-blue-900;
+    }
+
+    &--dark{
+        @apply bg-sky-900 text-white;
+    }
+    &--opt{
+        @apply flex items-center justify-center w-10 h-10 rounded-full mr-6 ;
+        
+    }
+}
+.tbtn{
+    @apply bg-slate-100  rounded-lg px-3 py-1 font-semibold text-yellow-50 ;
+    &-dark{
+        @apply bg-black text-white rounded-lg px-3 py-1 font-semibold text-yellow-50; 
+    }
+    &-light{
+        @apply  bg-white text-black rounded-lg px-3 py-1;
     }
 }

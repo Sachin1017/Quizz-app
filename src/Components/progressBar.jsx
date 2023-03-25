@@ -1,10 +1,10 @@
 import React from 'react';
 
-function ProgressBar({ progress }) {
+function ProgressBar({ progress, bgColor }) {
   const Parentdiv = {
     height: 10,
     width: 150,
-    backgroundColor: 'cornsilk',
+    backgroundColor: bgColor,
     borderRadius: 40,
     margin: 50,
   };

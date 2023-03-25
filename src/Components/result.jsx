@@ -1,21 +1,56 @@
+import clsx from 'clsx';
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { QuizContext } from '../Context/quizContext';
 
 export default function Result() {
+  const navigate = useNavigate();
   const {
-    correct, score, setStart, setExit,
+    correct, score, setCorrect, setScore, theme, setTheme,
   } = useContext(QuizContext);
 
   const okay = () => {
-    setStart(false);
-    setExit(false);
+    setCorrect(0);
+    setScore(0);
   };
 
   return (
-    <div className="flex flex-col w-full h-screen items-center bg-orange-50">
+    <div className={clsx(
+      'theme--light flex flex-col w-full h-screen items-center bg-orange-50',
+      { 'theme--dark': theme === true },
+    )}
+    >
       <div className="flex w-full p-8 items-center justify-end">
-        <button type="button" className="bg-slate-100 p-2 rounded-full" onClick={() => okay()}>
+        <div className="flex gap-3">
+          <button
+            type="button"
+            className={clsx(
+              'tbtn-dark',
+              { 'tbtn-light': theme === true },
+            )}
+            onClick={() => setTheme(false)}
+          >
+            Light
+          </button>
+          <button
+            type="button"
+            className={clsx(
+              'tbtn-dark',
+              { 'tbtn-light': theme === false },
+            )}
+            onClick={() => setTheme(true)}
+          >
+            Dark
+          </button>
+        </div>
+        <button
+          type="button"
+          className="bg-slate-100 p-2 rounded-full"
+          onClick={(() => {
+            okay();
+            navigate('/', { replace: true });
+          })}
+        >
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8.41 7L12.71 2.71C12.8983 2.5217 13.0041 2.2663 13.0041 2C13.0041 1.7337 12.8983 1.47831 12.71 1.29C12.5217 1.1017 12.2663 0.995911 12 0.995911C11.7337 0.995911 11.4783 1.1017 11.29 1.29L7 5.59L2.71 1.29C2.5217 1.1017 2.2663 0.995911 2 0.995911C1.7337 0.995911 1.4783 1.1017 1.29 1.29C1.1017 1.47831 0.995908 1.7337 0.995908 2C0.995908 2.2663 1.1017 2.5217 1.29 2.71L5.59 7L1.29 11.29C1.19627 11.383 1.12188 11.4936 1.07111 11.6154C1.02034 11.7373 0.994202 11.868 0.994202 12C0.994202 12.132 1.02034 12.2627 1.07111 12.3846C1.12188 12.5064 1.19627 12.617 1.29 12.71C1.38296 12.8037 1.49356 12.8781 1.61542 12.9289C1.73728 12.9797 1.86799 13.0058 2 13.0058C2.13201 13.0058 2.26272 12.9797 2.38458 12.9289C2.50644 12.8781 2.61704 12.8037 2.71 12.71L7 8.41L11.29 12.71C11.383 12.8037 11.4936 12.8781 11.6154 12.9289C11.7373 12.9797 11.868 13.0058 12 13.0058C12.132 13.0058 12.2627 12.9797 12.3846 12.9289C12.5064 12.8781 12.617 12.8037 12.71 12.71C12.8037 12.617 12.8781 12.5064 12.9289 12.3846C12.9797 12.2627 13.0058 12.132 13.0058 12C13.0058 11.868 12.9797 11.7373 12.9289 11.6154C12.8781 11.4936 12.8037 11.383 12.71 11.29L8.41 7Z" fill="black" />
           </svg>
@@ -79,12 +114,15 @@ export default function Result() {
               </linearGradient>
             </defs>
           </svg>
-          <p className="text-xl font-bold text-blue-900">Results of Fantasy Quiz #156</p>
+          <p className="text-xl font-bold">Results of Fantasy Quiz #156</p>
         </div>
         <div className="flex flex-col h-[40%] items-center justify-center gap-[1px]">
           <div className="flex bg-white py-2 px-4 w-full rounded-t-md items-center justify-between font-semibold">
             <div className="flex items-center">
-              <div className="bg-orange-50 px-2 py-3 rounded-full mr-4">
+              <div className={clsx('theme--opt bg-orange-50', {
+                'theme--dark': theme === true,
+              })}
+              >
                 <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M21.34 11.17C11.17 11.17 11.17 13.807 1 13.807V3.63703C11.17 3.63703 11.17 1 21.34 1V11.17Z" fill="#F0EBE6" stroke="url(#paint0_linear_14_506)" strokeWidth="0.716196" strokeMiterlimit="10" />
                   <path d="M23.5516 13.3615C13.3816 13.3615 13.3816 16 3.21161 16V5.83002C13.3816 5.83002 13.3816 3.19156 23.5516 3.19156V13.3615Z" fill="url(#paint1_linear_14_506)" />
@@ -115,27 +153,38 @@ export default function Result() {
                   </defs>
                 </svg>
               </div>
-              <p>SCORE GAINED</p>
+              <p className="text-black">SCORE GAINED</p>
             </div>
-            <p>{score}</p>
+            <p className="text-black">{score}</p>
           </div>
           <div className="flex bg-white py-2 px-4 w-full rounded-b-md justify-between items-center font-semibold">
             <div className="flex items-center">
-              <div className="bg-orange-50 px-3 py-3 rounded-full mr-4">
+              <div className={clsx('theme--opt bg-orange-50', {
+                'theme--dark': theme === true,
+              })}
+              >
                 <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M14.71 1.21C14.617 1.11627 14.5064 1.04188 14.3846 0.991107C14.2627 0.940338 14.132 0.9142 14 0.9142C13.868 0.9142 13.7373 0.940338 13.6154 0.991107C13.4936 1.04188 13.383 1.11627 13.29 1.21L5.84001 8.67L2.71001 5.53C2.61349 5.43676 2.49955 5.36345 2.37469 5.31424C2.24984 5.26504 2.11651 5.24091 1.98233 5.24323C1.84815 5.24555 1.71574 5.27428 1.59266 5.32777C1.46959 5.38126 1.35825 5.45848 1.26501 5.555C1.17177 5.65152 1.09846 5.76546 1.04925 5.89032C1.00005 6.01517 0.97592 6.1485 0.978241 6.28268C0.980563 6.41686 1.00929 6.54927 1.06278 6.67234C1.11628 6.79542 1.19349 6.90676 1.29001 7L5.13001 10.84C5.22297 10.9337 5.33358 11.0081 5.45543 11.0589C5.57729 11.1097 5.708 11.1358 5.84001 11.1358C5.97202 11.1358 6.10273 11.1097 6.22459 11.0589C6.34645 11.0081 6.45705 10.9337 6.55001 10.84L14.71 2.68C14.8115 2.58636 14.8925 2.4727 14.9479 2.3462C15.0033 2.21971 15.0319 2.0831 15.0319 1.945C15.0319 1.8069 15.0033 1.67029 14.9479 1.54379C14.8925 1.41729 14.8115 1.30364 14.71 1.21Z" fill="#26D266" stroke="#26D166" />
                 </svg>
               </div>
-              <p>CORRECT PREDICTIONS</p>
+              <p className="text-black">CORRECT PREDICTIONS</p>
             </div>
-            <p>{correct}</p>
+            <p className="text-black">{correct}</p>
           </div>
         </div>
       </div>
       <div className="w-[20%]">
-        <Link to="/">
-          <button type="button" className="bg-green-400 py-2 w-full rounded-md font-semibold text-white hover:bg-green-500" onClick={() => okay()}>OKAY</button>
-        </Link>
+        <button
+          type="button"
+          onClick={(() => {
+            okay();
+            navigate('/', { replace: true });
+          })}
+          className="bg-green-400 py-2 w-full rounded-md font-semibold text-white hover:bg-green-500"
+        >
+          OKAY
+
+        </button>
       </div>
     </div>
   );

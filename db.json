@@ -297,6 +297,7 @@
   ],
   "quiz": [
     {
+      "id": 1,
       "question": "Chennakeshab Temple is located in …………",
       "opt1": "Konark",
       "opt2": "Puri",
@@ -304,6 +305,7 @@
       "ans": "opt3"
     },
     {
+      "id": 2,
       "question": "Ozone layer is found in ……",
       "opt1": "Troposphere",
       "opt2": "Stratosphere",
@@ -311,6 +313,7 @@
       "ans": "opt2"
     },
     {
+      "id": 3,
       "question": "The Second World War fought between …",
       "opt1": "1939 and 1945",
       "opt2": "1935 and 1942",
@@ -318,6 +321,7 @@
       "ans": "opt1"
     },
     {
+      "id": 4,
       "question": "In reference to American war of Independence, who among the following had issued the ‘Declaration of Independence?’",
       "opt1": "Thomas Jafferson",
       "opt2": "George Washington",
@@ -325,6 +329,7 @@
       "ans": "opt1"
     },
     {
+      "id": 5,
       "question": "Who among the following was the first Indian who passed Indian Civil Services (ICS)?",
       "opt1": "Surendra Nath Banerjee",
       "opt2": "Subhash Chandra Bose",

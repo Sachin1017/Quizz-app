@@ -13,7 +13,5 @@ const root = createRoot(container);
 // Test.getDerivedStateFromProps = (props, state) => {};
 
 root.render(
-  <QuizHolder>
-    <App />
-  </QuizHolder>,
+  <App />,
 );
