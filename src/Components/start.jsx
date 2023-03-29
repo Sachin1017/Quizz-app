@@ -23,7 +23,7 @@ function Start() {
           <div className="bg-green-400 rounded-md px-4 py-2">QUIZ</div>
           <div>FLOW</div>
         </button>
-        <div className="h-2 rounded-md w-[80%] bg-gradient-to-r from-green-400 to-transparent" />
+        <div className="animate-pulse h-2 rounded-md w-[80%] bg-gradient-to-r from-green-400 to-transparent" />
       </div>
     </div>
   );
