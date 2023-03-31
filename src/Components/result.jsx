@@ -21,7 +21,7 @@ export default function Result() {
     )}
     >
       <div className="flex w-full p-8 items-center justify-end">
-        <div className="flex gap-3">
+        <div className="sm:hidden md:flex gap-3">
           <button
             type="button"
             className={clsx(
@@ -56,7 +56,7 @@ export default function Result() {
           </svg>
         </button>
       </div>
-      <div className="flex-col h-[80%] w-[40%] items-center justify-between">
+      <div className="flex-col h-[80%] sm:w-[90%] md:w-[40%] items-center justify-between">
         <div className="flex flex-col h-[40%] items-center justify-evenly">
           <svg width="147" height="155" viewBox="0 0 147 155" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M121.743 68.3608H24.938V152.049H121.743V68.3608Z" fill="url(#paint0_linear_14_515)" />
@@ -173,7 +173,7 @@ export default function Result() {
           </div>
         </div>
       </div>
-      <div className="w-[20%]">
+      <div className="md:w-[20%] sm:w-[90%]">
         <button
           type="button"
           onClick={(() => {

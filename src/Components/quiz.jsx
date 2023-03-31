@@ -45,19 +45,16 @@ function Quiz() {
   };
 
   console.log(loading);
-  // if (loading) {
-  //   return <div className="flex animate-pulse justify-center text-2xl">Loading...</div>;
-  // }
 
   if (error) {
     return <div className="text-lg text-red-500 flex justify-center">{error}</div>;
   }
   return (
-    <div className={clsx('theme--light flex flex-col items-center w-full h-screen justify-between', {
+    <div className={clsx('theme--light flex flex-col items-center w-full h-screen sm:justify-start md:justify-between', {
       'theme--dark': theme === true,
     })}
     >
-      <div className="flex items-center justify-between w-full px-10 py-8 ">
+      <div className="flex items-center justify-between w-full sm:px-1 md:px-10 md:py-8 sm:py-4 ">
         <div className="flex px-4 py-1 bg-slate-100 rounded-md text-black">
           <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.727295" y="0.363647" width="22.2727" height="22.2727" fill="url(#pattern0)" />
@@ -70,11 +67,11 @@ function Quiz() {
           </svg>
           <p>200</p>
         </div>
-        <div className="text-2xl font-bold">
+        <div className="md:text-2xl sm:lg font-bold">
           <p>Fantasy Quiz #156</p>
         </div>
         <div className="flex gap-4 items-center">
-          <div className="flex gap-3">
+          <div className="sm:hidden md:flex gap-3">
             <button
               type="button"
               className={clsx(
@@ -111,6 +108,17 @@ function Quiz() {
           </button>
         </div>
       </div>
+      <div className="md:hidden sm:flex items-center justify-center w-[90%]">
+        <ProgressBar
+          progress={progress}
+          bgColor={theme === true ? '#336699' : '#fff2e6'}
+        />
+        <p className="text-black">
+          {current}
+          /
+          {quiz.length}
+        </p>
+      </div>
       {
         loading ? (
           <div className="flex cursor-wait animate-pulse justify-center text-2xl">Loading...</div>
@@ -119,8 +127,8 @@ function Quiz() {
             quiz.map((x) => {
               if (x.id === current) {
                 return (
-                  <div className="w-[50%] rounded-md overflow-hidden">
-                    <div className="px-8  mb-8 text-3xl font-bold">{x.question}</div>
+                  <div className="sm:w-[90%] md:w-[50%] h-[60%] justify-around flex flex-1 flex-col rounded-md overflow-hidden">
+                    <div className="font-bold sm:px-2 sm:text-lg md:px-8 md:mb-8 md:text-3xl">{x.question}</div>
                     <div className="grid grid-flow-row mt-3 items-center  text-black">
                       <button
                         type="button"
@@ -198,8 +206,8 @@ function Quiz() {
             })
           )
       }
-      <div className="flex w-full items-center justify-center bg-white">
-        <div className="flex items-center justify-center w-[40%]">
+      <div className="flex w-full items-center justify-center md:bg-white sm:bg-transparent">
+        <div className="sm:hidden md:flex items-center justify-center md:w-[40%] sm:w-full">
           <ProgressBar
             progress={progress}
             bgColor={theme === true ? '#336699' : '#fff2e6'}
@@ -210,13 +218,13 @@ function Quiz() {
             {quiz.length}
           </p>
         </div>
-        <div className="flex w-[40%] items-center justify-center">
+        <div className="flex md:w-[40%] sm:w-full items-center justify-center">
           {(
             current === quiz.length ? (
               <button
                 disabled={ans === ''}
                 type="button"
-                className={clsx('bt--default px-8', {
+                className={clsx('bt--default', {
                   'bt--active': ans !== '',
                 })}
                 onClick={() => {

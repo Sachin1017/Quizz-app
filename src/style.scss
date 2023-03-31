@@ -4,7 +4,7 @@
 
 .btn {
     &--default{
-        @apply flex items-center mx-auto w-[70%] duration-200 text-xl font-bold cursor-pointer px-8 py-4 rounded-md my-2;
+        @apply flex items-center mx-auto md:w-[70%] sm:w-full duration-200 md:text-xl sm:text-sm font-bold cursor-pointer md:px-8 sm:px-4 sm:py-2 md:py-4 rounded-md my-2;
     }
     
      &--active {
@@ -14,7 +14,7 @@
 
 .bt {
     &--default{
-        @apply px-10 py-2 bg-slate-400 cursor-not-allowed text-white font-semibold rounded-md;
+        @apply md:w-[50%] sm:w-[90%] py-2 bg-slate-400 cursor-not-allowed text-white font-semibold rounded-md;
     }
 
     &--active{
